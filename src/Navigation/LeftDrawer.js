@@ -34,6 +34,14 @@ const myStyle = makeStyles((theme) =>(
                             },
         menuButton :    {   
                             marginRight : theme.spacing(2),
+                            borderWidth:1,
+                            borderColor:'rgba(0,0,0,0.2)',
+                            alignItems:'center',
+                            justifyContent:'center',
+                            backgroundColor : '#A9A9A9',
+                            width:'100',
+                            height:'100',
+                            borderRadius:'50',
                         },
 
         hide :  { 
@@ -46,7 +54,7 @@ const myStyle = makeStyles((theme) =>(
                     },
         drawerPaper :   {
                             width : drawerWidth,
-                            backgroundColor : "#c19a6b",
+                            backgroundColor : "#ffca18",
                         },
         drawerHeader :  {
                             display : 'flex',
@@ -84,7 +92,9 @@ function LeftDrawer(props) {
                     className={clsx(myclass.menuButton, open && myclass.hide)}
                 >
                     <MenuIcon 
-                        color = 'primary'
+                        fontSize = 'large'
+                        style = {{color : '#ffffff',  fontSizeLarge : 'large'}}
+                        
                     />
                 </IconButton>
             </Toolbar>
