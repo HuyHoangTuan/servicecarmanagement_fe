@@ -28,11 +28,9 @@ const myStyle = makeStyles((theme) =>(
                     transform : 'translateY(-50%)',
                     width : '100%',
                 },
-        buttoncenter :      {
-                                //marginTop : theme.spacing(10),
-                                //marginBottom : theme.spacing(3),
-                            },
         menuButton :    {   
+                            position : 'fixed',
+                            zIndex : '10',
                             marginRight : theme.spacing(2),
                             borderWidth:1,
                             borderColor:'rgba(0,0,0,0.2)',
@@ -66,7 +64,7 @@ const myStyle = makeStyles((theme) =>(
         textcenter :    {
                             display : 'flex',
                             textAlign : 'center',
-                        }
+                        },
     }
 ))
 

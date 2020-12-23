@@ -7,44 +7,42 @@ const mySytle = makeStyles((theme) =>(
     {
         main :  {
                     display : 'flex',
-                    flexDirection : 'row',
+                    flexDirection : 'column',
                 },
+        drawer :    {
+                        display : 'fixed',
+                        top : '0%',
+                        left : '0%',
+                    },
         container1 :     {
-                            position : 'relative',
+                            position : 'fixed',
+                            top :'0%',
                             backgroundColor : '#585858',
                             width : '50%',
                             height : '100vh',
-                            animationTimingFunction : 'linear',
-                            animationFillMode : 'forwards',
-                            animation : '$ExitCon1 0.5s',
-                            '&:hover' :     {
-                                                animationTimingFunction : 'linear',
-                                                animationFillMode : 'forwards',
-                                                animation : '$Con1 0.5s',
+                            zIndex : '1',
+                            transition : 'width 0.5s linear, z-index 0s linear 0.5s',
+                            '&:hover' :     {           
+                                                width : '70%',          
+                                                zIndex : '5',
+                                                transition : 'width 0.5s linear 0.5s, z-index 0s linear 0.5s'   ,          
                                             }
                         },
         container2 :    {
-                            position : 'relative',
+                            top: '0%',
+                            right: '0%',
+                            position : 'fixed',
                             backgroundColor : '#ffca18',
-                            width : '100%',
+                            width : '50%',
                             height : '100vh',
+                            zIndex : '1',
+                            transition : 'width 0.5s linear, z-index 0s linear 0.5s',
+                            '&:hover' :     {
+                                                width : '70%',          
+                                                zIndex : '5',
+                                                transition : 'width 0.5s linear 0.5s, z-index 0s linear 0.5s'   ,          
+                                            }
                         },
-        "@keyframes Con1" :  {
-                                "0%":   {
-                                            width : '50%',
-                                        },
-                                "100%":     {
-                                                width : '200%',
-                                            },
-                            },
-        "@keyframes ExitCon1" :  {
-                                "0%":   {
-                                            width : '200%',
-                                        },
-                                "100%":     {
-                                                width : '50%',
-                                            },
-                            },
     }
 ))
 function HomePage(props)
@@ -59,12 +57,11 @@ function HomePage(props)
     }
     return(
         <div className = {myclass.main}>
+            <LeftDrawer/>
             <div 
                 className = {myclass.container1}
                 onMouseMove = {handleMouseMove}
-            >
-                <LeftDrawer/>
-            </div>
+            />
             <div 
                 className = {myclass.container2}
                 onMouseMove = {handleMouseMove}
