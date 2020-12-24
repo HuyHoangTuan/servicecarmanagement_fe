@@ -1,4 +1,4 @@
-import { CssBaseline, Drawer, IconButton, makeStyles, useTheme,Divider, Button, ButtonGroup, Typography, ListItem, List, ListItemText, ListItemIcon } from '@material-ui/core';
+import { CssBaseline, Drawer, IconButton, makeStyles, useTheme, ListItem, List, ListItemText, ListItemIcon } from '@material-ui/core';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -8,7 +8,7 @@ import ChervonRightIcon from '@material-ui/icons/ChevronRight'
 import Home from '@material-ui/icons/Home'
 import CommuteTwoToneIcon from '@material-ui/icons/CommuteTwoTone';
 import DateRangeTwoToneIcon from '@material-ui/icons/DateRangeTwoTone';
-
+import {Link} from 'react-router-dom';
 const drawerWidth = 240;
 const myStyle = makeStyles((theme) =>(
     {
@@ -110,34 +110,48 @@ function LeftDrawer(props) {
                         {theme.direction === 'ltr' ? <ChervonLeftIcon color = 'primary' /> : <ChervonRightIcon color = 'primary'/>}
                     </IconButton>
                 </div>
+
                 <List
                     className = {myclass.list}
                 >
-                    <ListItem button>
-
+                    <ListItem 
+                        button
+                        component = {Link}
+                        to = "/"
+                        onClick = {()=>handleDrawer(false)}
+                    >
                         <ListItemIcon>
                             <Home/>
                         </ListItemIcon>
 
-                        <ListItemText classes = {myclass.textcenter} primary="Home Page"/>
+                        <ListItemText className = {myclass.textcenter} primary="Home Page"/>
                     </ListItem>
 
-                    <ListItem button>
+                    <ListItem 
+                        button
+                        component = {Link}
+                        to = "/carlist"
+                        onClick = {()=>handleDrawer(false)} 
+                    >
 
                         <ListItemIcon>
                             <CommuteTwoToneIcon/>
                         </ListItemIcon>
 
-                        <ListItemText classes = {myclass.textcenter} primary="Car Management"/>
+                        <ListItemText className = {myclass.textcenter} primary="Car List"/>
                     </ListItem>
 
-                    <ListItem button>
+                    <ListItem 
+                        button
+                    
+                        onClick = {()=>handleDrawer(false)}
+                    >
 
                         <ListItemIcon>
                             <DateRangeTwoToneIcon/>
                         </ListItemIcon>
                         
-                        <ListItemText classes = {myclass.textcenter} primary="Schedule"/>
+                        <ListItemText className = {myclass.textcenter} primary="Schedule"/>
                     </ListItem>
 
                 </List>

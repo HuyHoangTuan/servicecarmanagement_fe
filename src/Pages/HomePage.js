@@ -1,7 +1,5 @@
-import {makeStyles, useTheme } from '@material-ui/core';
+import {makeStyles} from '@material-ui/core';
 import React from 'react';
-import { useState } from 'react';
-import LeftDrawer from '../Navigation/LeftDrawer';
 
 const mySytle = makeStyles((theme) =>(
     {
@@ -48,24 +46,17 @@ const mySytle = makeStyles((theme) =>(
 function HomePage(props)
 {
     const myclass = mySytle();
-    const theme = useTheme();
-    const [X,setX] = useState(0);
-    const [Y,setY] = useState(0);
-    const handleMouseMove = event =>{
-        setX(event.clientX);
-        setY(event.clientY);
-    }
     return(
         <div className = {myclass.main}>
-            <LeftDrawer/>
             <div 
                 className = {myclass.container1}
-                onMouseMove = {handleMouseMove}
-            />
+            >      
+            </div>
+            
             <div 
                 className = {myclass.container2}
-                onMouseMove = {handleMouseMove}
-            />
+            >
+            </div>
         </div>
     )
 
