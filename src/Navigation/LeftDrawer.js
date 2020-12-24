@@ -143,8 +143,9 @@ function LeftDrawer(props) {
 
                     <ListItem 
                         button
-                    
-                        onClick = {()=>handleDrawer(false)}
+                        component = {Link}
+                        to = "/schedule"
+                        onClick = {()=>handleDrawer(false)} 
                     >
 
                         <ListItemIcon>
