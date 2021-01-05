@@ -4,6 +4,7 @@ import React from 'react';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import AddIcon from '@material-ui/icons/Add';
 import ChangeHistoryIcon from '@material-ui/icons/ChangeHistory';
+import AddSchedule from '../component/AddSchedule';
 const myStyle = makeStyles((theme) =>(
     {
         root :  {
@@ -198,11 +199,7 @@ function CarList(params)
                                 data = {data}
                                 fullPagination 
                             />
-                            <div>
-                                <button className = "button1">  <AddIcon/> </button>
-                                <button className = "button1"> <ChangeHistoryIcon/> </button>
-                                <button className = "button1"> <DeleteForeverOutlinedIcon/> </button>
-                                </div> 
+                            <AddSchedule/>
                         </MDBCardBody>
                     </MDBCard>
                 </div>
