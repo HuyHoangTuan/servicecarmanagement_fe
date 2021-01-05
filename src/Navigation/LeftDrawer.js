@@ -1,4 +1,4 @@
-import { CssBaseline, Drawer, IconButton, makeStyles, useTheme, ListItem, List, ListItemText, ListItemIcon } from '@material-ui/core';
+import { CssBaseline, Drawer, IconButton, makeStyles, useTheme, ListItem, List, ListItemText, ListItemIcon, Divider } from '@material-ui/core';
 import clsx from 'clsx';
 import React, { useState } from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -9,6 +9,8 @@ import Home from '@material-ui/icons/Home'
 import CommuteTwoToneIcon from '@material-ui/icons/CommuteTwoTone';
 import DateRangeTwoToneIcon from '@material-ui/icons/DateRangeTwoTone';
 import {Link} from 'react-router-dom';
+import { getToken, getUser, removeUserSession } from '../Utils/Common';
+import { withRouter } from "react-router-dom";
 const drawerWidth = 240;
 const myStyle = makeStyles((theme) =>(
     {
@@ -37,6 +39,8 @@ const myStyle = makeStyles((theme) =>(
                             alignItems:'center',
                             justifyContent:'center',
                             backgroundColor : '#A9A9A9',
+                            top : '0%',
+                            left : theme.spacing(2),
                             width:'100',
                             height:'100',
                             borderRadius:'50',
@@ -73,11 +77,17 @@ function LeftDrawer(props) {
     const myclass = myStyle();
     const theme = useTheme();
     var [open, setOpen] = useState(false);
-
+    var name = useState();
     function handleDrawer(value) {
         setOpen(value);
     }
+    const user = getUser();
 
+    // handle click event of logout button
+    function handleLogout() {
+        removeUserSession();
+        props.history.push("/login");
+    }
     return (
         <div className={myclass.root}>
             <CssBaseline />
@@ -109,7 +119,10 @@ function LeftDrawer(props) {
                     >
                         {theme.direction === 'ltr' ? <ChervonLeftIcon color = 'primary' /> : <ChervonRightIcon color = 'primary'/>}
                     </IconButton>
+                    <Divider/>
                 </div>
+
+                
 
                 <List
                     className = {myclass.list}
@@ -155,6 +168,18 @@ function LeftDrawer(props) {
                         <ListItemText className = {myclass.textcenter} primary="Schedule"/>
                     </ListItem>
 
+                    <ListItem 
+                        button
+                        component = {Link}
+                        to = "/login"
+                        onClick = {()=>handleLogout()} 
+                    >
+
+                    
+                        
+                        <ListItemText className = {myclass.textcenter} primary="Logout"/>
+                    </ListItem>
+
                 </List>
 
             </Drawer>
@@ -162,4 +187,4 @@ function LeftDrawer(props) {
     );
 }
 
-export default LeftDrawer;
+export default withRouter(LeftDrawer);
