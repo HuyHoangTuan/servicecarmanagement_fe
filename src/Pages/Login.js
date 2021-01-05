@@ -9,15 +9,15 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { InputAdornment, Grid, Box } from "@material-ui/core";
 import { AccountCircle, LockRounded, PlayCircleFilledWhite } from "@material-ui/icons";
-
+import truck from "../Image/truck.jpg"
 
 const useStyles = makeStyles((theme) => ({
     body: {
       display: "flex",
       position : "fixed",
       flexDirection: "column",
-      alignItems: "center",
-      background: 'linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 0%, rgba(0,212,255,1) 100%)',
+      //alignItems: "center",
+      backgroundImage: `url(${truck})`,
       spacing: 10,
       width : "100vw",
       height : "100vh",
@@ -25,22 +25,32 @@ const useStyles = makeStyles((theme) => ({
       left : "0%",
 
   },
-  paper: {
-    //background: "white",
-    marginTop: theme.spacing(8),
+  box: {
+    background: "white",
+    //marginTop: "25vh",
+    marginLeft: '67vw',
     position : "absolute",
     flexDirection: "column",
     alignItems: "center",
-    
+    width: '33vw',
+    height: '100vh',
+    paddingBottom: theme.spacing(5),
+    paddingLeft: theme.spacing(10),
+    paddingRight: theme.spacing(10),
+    paddingTop:'35vh',
   },
   form: {
     marginTop: theme.spacing(1),
-    flexDirection: "column",
     alignItems: "center",
-    position : 'relative',
     minWidth: 300,
     maxWidth: 400,
   },
+  button: {
+      background: 'linear-gradient(45deg, rgba(255,228,132,1) 0%, rgba(255,202,24,1) 100%)',
+  },
+  textField: {
+      //color: 'white',
+  }
 }));
 
 function Login(props) {
@@ -86,20 +96,26 @@ function Login(props) {
         })
         .catch((error)=>{
           console.log(error.response);
+          setError("Something went wrong. Please try again later.");
+          setLoading(false);
         });
   };
 
   return (
     <div className = {classes.body}>
     <Box
-      className = {classes.paper}
+      ///borderRadius={8}
+      boxShadow={4}
+      borderColor = "white"
+      className = {classes.box}
     >
       
       <Typography component="h1" variant="h4" p = {10}>
         Sign in
       </Typography>
-      <form className={classes.form} onSubmit={handleSubmit} noValidate>
         <TextField
+          className = {classes.textField}
+          autoComplete='off'
           variant="outlined"
           margin="normal"
           fullWidth
@@ -118,6 +134,8 @@ function Login(props) {
         />
 
         <TextField
+          className = {classes.textField}
+          autoComplete='off'
           variant="outlined"
           margin="normal"
           fullWidth
@@ -149,6 +167,7 @@ function Login(props) {
         ) : (
           <Button
             fullWidth
+            className = {classes.button}
             type="submit"
             variant="contained"
             color="primary"
@@ -157,13 +176,13 @@ function Login(props) {
             Login
           </Button>
         )}
-      </form>
     <Grid container justify="center">
         <Grid item>
           <Button> Forgot password?</Button>
           <Button> Register</Button>
         </Grid>
       </Grid>
+      {error && <><small style={{ color: 'red' }}>{error}</small><br /></>}<br />
     </Box>
     </div>
   );

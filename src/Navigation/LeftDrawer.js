@@ -11,6 +11,7 @@ import DateRangeTwoToneIcon from '@material-ui/icons/DateRangeTwoTone';
 import {Link} from 'react-router-dom';
 import { getToken, getUser, removeUserSession } from '../Utils/Common';
 import { withRouter } from "react-router-dom";
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const drawerWidth = 240;
 const myStyle = makeStyles((theme) =>(
     {
@@ -69,6 +70,16 @@ const myStyle = makeStyles((theme) =>(
                             display : 'flex',
                             textAlign : 'center',
                         },
+
+        logout :    {
+                        position : 'inherit',
+                        width : drawerWidth,
+                        bottom : '0%',
+                    },
+        logoutdivider : {
+                            position : 'relative',
+                            top : '88%',
+                        }
     }
 ))
 
@@ -167,21 +178,22 @@ function LeftDrawer(props) {
                         
                         <ListItemText className = {myclass.textcenter} primary="Schedule"/>
                     </ListItem>
-
-                    <ListItem 
-                        button
-                        component = {Link}
-                        to = "/login"
-                        onClick = {()=>handleLogout()} 
-                    >
-
-                    
-                        
-                        <ListItemText className = {myclass.textcenter} primary="Logout"/>
-                    </ListItem>
-
                 </List>
-
+                <Divider
+                    className = {myclass.logoutdivider}
+                />
+                <ListItem 
+                    button
+                    component = {Link}
+                    to = "/login"
+                    onClick = {()=>handleLogout()} 
+                    className = {myclass.logout}
+                >
+                    <ListItemIcon>
+                        <ExitToAppIcon/>
+                    </ListItemIcon>
+                    <ListItemText className = {myclass.textcenter} primary="Logout"/>
+                </ListItem>
             </Drawer>
         </div>
     );
