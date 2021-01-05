@@ -26,7 +26,7 @@ const myStyle = makeStyles((theme) =>(
                         },
     }
 ))
-function CarList(params) 
+function Schedule(params) 
 {
     const myclass = myStyle();
     const data =    {
@@ -212,4 +212,4 @@ function CarList(params)
 
 }
 
-export default CarList;
+export default Schedule;

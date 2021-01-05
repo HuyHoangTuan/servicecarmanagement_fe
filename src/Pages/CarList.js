@@ -1,12 +1,13 @@
 import '@fortawesome/fontawesome-free/css/all.min.css'; 
 import 'bootstrap-css-only/css/bootstrap.min.css';
-import'mdbreact/dist/css/mdb.css';
+import  'mdbreact/dist/css/mdb.css';
 
-import {makeStyles } from '@material-ui/core';
-import { MDBCard, MDBCardBody , MDBDataTableV5,  } from 'mdbreact';
+import {Button, IconButton, makeStyles } from '@material-ui/core';
+import { MDBCard, MDBCardBody , MDBCardHeader, MDBDataTableV5,  } from 'mdbreact';
 import React from 'react';
 import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
 import AddIcon from '@material-ui/icons/Add';
+import AddCircleOutlineTwoToneIcon from '@material-ui/icons/AddCircleOutlineTwoTone';
 import ChangeHistoryIcon from '@material-ui/icons/ChangeHistory';
 const myStyle = makeStyles((theme) =>(
     {
@@ -29,6 +30,24 @@ const myStyle = makeStyles((theme) =>(
                             left : '5%',
                             
                         },
+        header :    {
+                        position : 'absolute',
+                        fontSize : '50px',
+                        top : '0%',
+                        textAlign : 'left',
+                    },
+        addbutton : {
+                        position : 'absolute',
+                        top : '6%',
+                        right : '30%',
+                        borderWidth: theme.spacing(3),
+                        width:  theme.spacing(3),
+                        height: theme.spacing(3),
+                        
+                        borderRadius: theme.spacing(3),
+                        
+                        transform : 'scale(1.5)',
+                    }
     }
 ))
 function CarList(params) 
@@ -39,50 +58,50 @@ function CarList(params)
                                         {
                                             label : "Id",
                                             field : "Id",
-                                            sort : 'asc',
-                                            width : 150,
+                                            //sort : 'asc',
+                                            width : 10,
                                         },
                                         {
                                             label : "Lái Xe",
                                             field : "Name",
-                                            sort : 'asc',
-                                            width : 150,
+                                            //sort : 'asc',
+                                            width : 300,
                                         },
                                         {
                                             label : "Biển số",
                                             field : "Code",
-                                            sort : 'asc',
-                                            width : 150,
+                                            //sort : 'asc',
+                                            width : 100,
                                         },
                                         {
                                             label : "Hãng Xe",
                                             field : "Brand",
-                                            sort : 'asc',
-                                            width : 150,
+                                            //sort : 'asc',
+                                            width : 100,
                                         },
                                         {
                                             label : "Đời Xe",
                                             field : "Age",
-                                            sort : 'asc',
-                                            width : 150,
+                                            //sort : 'asc',
+                                            width : 100,
                                         },
                                         {
                                             label : "Loại xe",
                                             field : "Type",
-                                            sort : "asc",
-                                            width : 150,
+                                            //sort : "asc",
+                                            width : 100,
                                         },
                                         {
                                             label : "Ngày Đăng Kiểm",
                                             field : "CheckedDate",
-                                            sort : 'asc',
-                                            width : 150,
+                                            //sort : 'asc',
+                                            width : 100,
                                         },
                                         {
                                             label : "Đang Hoạt Động",
                                             field : "Act",
-                                            sort : 'asc',
-                                            width : 150,
+                                            //sort : 'asc',
+                                            width : 100,
                                         },
                                     ],
                         rows :   [
@@ -196,24 +215,35 @@ function CarList(params)
                                         }
                                     }
                         >
-                            <h1> Danh sách xe </h1>   
+                            <h3
+                                className = {myclass.header}
+                            >
+                                Danh Sách Xe
+                            </h3>   
                             <MDBDataTableV5
-                                sortable = {false}
+                                info = {false}
                                 striped
-                                fixed
-                                searching
                                 hover = {true}
                                 bordered = {true}
-                                entriesOptions={[6]} 
-                                entries={6}
+                                entriesOptions={[5,6,7]} 
+                                entries={7}
                                 data = {data}
-                                fullPagination 
+                                searchBottom = {false}
+                                searchTop
+                                barReverse
+                                checkbox 
+                                checkboxFirstColumn
                             />
-                            <div>
-                                <button className = "button2">  <AddIcon/> </button>
-                                <button className = "button2"> <ChangeHistoryIcon/> </button>
-                                <button className = "button2"> <DeleteForeverOutlinedIcon/> </button>
-                                </div>
+                            <IconButton
+                                className = {myclass.addbutton}
+                            >
+                                <AddCircleOutlineTwoToneIcon
+                                    fontSize = 'large'
+                                    color = 'inherit'
+                                />
+                            </IconButton>
+                            <button className = "button2"> <ChangeHistoryIcon/> </button>
+                            <button className = "button2"> <DeleteForeverOutlinedIcon/> </button>
                         </MDBCardBody>
                     </MDBCard>
                 </div>
