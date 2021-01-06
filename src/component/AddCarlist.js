@@ -8,18 +8,18 @@ const myStyle = makeStyles((theme) =>(
         modal : {
                     backgroundColor : 'transparent',
                 },
+        
         addbutton :    {
                         position : 'relative',
                         fontSize : '50px',
                         top : '35px',
                         left : '-640px',
-                        //textAlign : 'top',
-                        color : '#ffca18',
-                        //backgroundColor : 'red'
+                        Color : 'lightgrey'
+                //textAlign : 'top',
                     },
     }
 ))
-function AddSchedule(props){
+function AddCarlist(props){
 
     const myclass = myStyle();
     const [open,setOpen] =useState(false);
@@ -39,47 +39,53 @@ function AddSchedule(props){
             </Button>
             <MDBModal  isOpen={open}     size = 'lg'>
                 <MDBModalBody className = {myclass.modal}>
-                    <h2>Thêm lịch trình</h2>
+                    <h2>Thêm xe</h2>
                     <TextField
                         required
-                        label="ID chuyến"
+                        label="ID "
                         helperText ="Number"
                         >
                     </TextField>
                     <TextField
                     required
-                    label="ID xe"
-                    helperText ="Number"
-                    >
-                    </TextField>
-                    <TextField
-                    required
-                    label="Điểm đi "
+                    label="Lái xe"
                     helperText ="Text"
                     >
                     </TextField>
                     <TextField
                     required
-                    label="Điểm đến"
-                    helperText ="Text"
+                    label="Biển số "
+                    helperText ="14D-3709"
                     >
                     </TextField>
                     <TextField
                     required
-                    label="Thời gian đi"
-                    helperText ="hh/mm dd/mm/yyyy"
+                    label="Hãng xe"
+                    helperText ="Ford"
                     >
                     </TextField>
                     <TextField
                     required
-                    label="Thời gian đến"
-                    helperText ="hh/mm dd/mm/yyyy"
+                    label="Đời xe"
+                    helperText ="yyyy"
                     >
                     </TextField>
                     <TextField
                     required
-                    label="Số chỗ/ Trọng tải"
-                    helperText ="Người/Kg"
+                    label="Loại xe"
+                    helperText ="Xe chở khách/Xe chở hàng"
+                    >
+                    </TextField>
+                    <TextField
+                    required
+                    label="Ngày đăng kiểm"
+                    helperText ="dd/mm/yyyy"
+                    >
+                    </TextField>
+                    <TextField
+                    required
+                    label="Đang hoạt động"
+                    helperText ="Active/InActive"
                     >
                     </TextField>
                 </MDBModalBody>
@@ -97,4 +103,4 @@ function AddSchedule(props){
     );
 }
 
-export default AddSchedule;
+export default AddCarlist;

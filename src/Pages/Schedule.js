@@ -1,9 +1,6 @@
 import {makeStyles } from '@material-ui/core';
 import { MDBCard, MDBCardBody , MDBDataTableV5,  } from 'mdbreact';
 import React from 'react';
-import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
-import AddIcon from '@material-ui/icons/Add';
-import ChangeHistoryIcon from '@material-ui/icons/ChangeHistory';
 import AddSchedule from '../component/AddSchedule';
 const myStyle = makeStyles((theme) =>(
     {
@@ -25,6 +22,13 @@ const myStyle = makeStyles((theme) =>(
                             top : '5%',
                             left : '5%',
                         },
+        header :    {
+                        position : 'absolute',
+                        fontSize : '50px',
+                        top : '3px',
+                        left : '450px',
+                        textAlign : 'left',
+        },
     }
 ))
 function Schedule(params) 
@@ -174,6 +178,7 @@ function Schedule(params)
                                         position : "relative",
                                         width : "100%",
                                         height : "90vh",
+                                        //top : '-10px',
                                     }
                                 }
                     >
@@ -182,24 +187,30 @@ function Schedule(params)
                                         {
                                             position : "relative",
                                             width : "100%",
-                                            top : "5%",
+                                            top : "3%",
                                         }
                                     }
                         >
-                            <h1> Lịch trình  </h1>
+                              <h3
+                                className = {myclass.header}
+                            >
+                                Danh Sách Lịch Trình
+                            </h3>   
+                            <AddSchedule className = "addsche"/>
                             <MDBDataTableV5
-                                sortable = {false}
-                                striped
-                                fixed
-                                searching
-                                hover = {true}
-                                bordered = {true}
-                                entriesOptions={[6]} 
-                                entries = {6}
-                                data = {data}
-                                fullPagination 
+                                 info = {false}
+                                 striped
+                                 hover = {true}
+                                 bordered = {true}
+                                 entriesOptions={[5,6,7]} 
+                                 entries={7}
+                                 data = {data}
+                                 searchBottom = {false}
+                                 searchTop
+                                 barReverse
+                                 checkbox 
+                                 checkboxFirstColumn
                             />
-                            <AddSchedule/>
                         </MDBCardBody>
                     </MDBCard>
                 </div>
