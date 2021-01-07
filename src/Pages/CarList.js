@@ -5,10 +5,7 @@ import  'mdbreact/dist/css/mdb.css';
 import {Button, IconButton, makeStyles } from '@material-ui/core';
 import { MDBCard, MDBCardBody , MDBCardHeader, MDBDataTableV5,  } from 'mdbreact';
 import React from 'react';
-import DeleteForeverOutlinedIcon from '@material-ui/icons/DeleteForeverOutlined';
-import AddIcon from '@material-ui/icons/Add';
-import AddCircleOutlineTwoToneIcon from '@material-ui/icons/AddCircleOutlineTwoTone';
-import ChangeHistoryIcon from '@material-ui/icons/ChangeHistory';
+import AddCarlist from '../component/AddCarlist';
 const myStyle = makeStyles((theme) =>(
     {
         root :  {
@@ -33,7 +30,8 @@ const myStyle = makeStyles((theme) =>(
         header :    {
                         position : 'absolute',
                         fontSize : '50px',
-                        top : '0%',
+                        top : '3px',
+                        left : '530px',
                         textAlign : 'left',
                     },
         addbutton : {
@@ -211,7 +209,7 @@ function CarList(params)
                                         {
                                             position : "relative",
                                             width : "100%",
-                                            top : "5%",
+                                            top : "3%",
                                         }
                                     }
                         >
@@ -220,6 +218,7 @@ function CarList(params)
                             >
                                 Danh Sách Xe
                             </h3>   
+                            <AddCarlist/> 
                             <MDBDataTableV5
                                 info = {false}
                                 striped
@@ -233,17 +232,8 @@ function CarList(params)
                                 barReverse
                                 checkbox 
                                 checkboxFirstColumn
-                            />
-                            <IconButton
-                                className = {myclass.addbutton}
                             >
-                                <AddCircleOutlineTwoToneIcon
-                                    fontSize = 'large'
-                                    color = 'inherit'
-                                />
-                            </IconButton>
-                            <button className = "button2"> <ChangeHistoryIcon/> </button>
-                            <button className = "button2"> <DeleteForeverOutlinedIcon/> </button>
+                            </MDBDataTableV5>  
                         </MDBCardBody>
                     </MDBCard>
                 </div>
