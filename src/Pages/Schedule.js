@@ -22,8 +22,38 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import AddSchedule from "../component/AddSchedule";
 import axios from "axios";
-
+import { TablePagination } from '@material-ui/core';
+const myStyle = makeStyles((theme) =>(
+  {
+      root :  {
+                  display : "flex",
+                  flexDirection : 'column',
+              },
+      contariner :    {
+                          position : "fixed",
+                          top : "0%",
+                          width : "100%",
+                          height : "100vh",
+                          backgroundColor : "#ffca18",
+                      },
+      contariner1 :   {
+                          position : "relative",
+                          width : "90%",
+                          height : "200%",
+                          top : '5%',
+                          left : '5%',
+                      },
+      header :    {
+                      position : 'absolute',
+                      fontSize : '50px',
+                      top : '3px',
+                      left : '450px',
+                    
+      },
+  }
+))
 function Schedule(params) {
+  const myclass = myStyle();
   const tableIcons = {
     Add: (props) => <AddSchedule />,
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -65,17 +95,228 @@ function Schedule(params) {
   ];
 
   const data = [
+    
+{
+  //id,carid,depature,destination,startingtime,arrivingtime,capacity
+TripID: "1",
+CarID: "01",
+Dpt: "BK",
+DptTime: "27-12-2000 10:00:00",
+Dst: "NEU",
+ArrTime: "28-12-2000 10:00:00",
+Cap: "10 chỗ",
+},
+{
+  //id,carid,depature,destination,startingtime,arrivingtime,capacity
+TripID: "1",
+CarID: "01",
+Dpt: "BK",
+DptTime: "27-12-2000 10:00:00",
+Dst: "NEU",
+ArrTime: "28-12-2000 10:00:00",
+Cap: "10 chỗ",
+},
+{
+  //id,carid,depature,destination,startingtime,arrivingtime,capacity
+TripID: "1",
+CarID: "01",
+Dpt: "BK",
+DptTime: "27-12-2000 10:00:00",
+Dst: "NEU",
+ArrTime: "28-12-2000 10:00:00",
+Cap: "10 chỗ",
+},
+{
+  //id,carid,depature,destination,startingtime,arrivingtime,capacity
+TripID: "1",
+CarID: "01",
+Dpt: "BK",
+DptTime: "27-12-2000 10:00:00",
+Dst: "NEU",
+ArrTime: "28-12-2000 10:00:00",
+Cap: "10 chỗ",
+},
     {
-        //id,carid,depature,destination,startingtime,arrivingtime,capacity
-      TripID: "1",
-      CarID: "01",
-      Dpt: "BK",
-      DptTime: "27-12-2000 10:00:00",
-      Dst: "NEU",
-      ArrTime: "28-12-2000 10:00:00",
-      Cap: "10 chỗ",
-    },
-    {
+        TripID: "2",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "20 chỗ",
+      },
+      {
+        TripID: "3",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "10 chỗ",
+      },
+      {
+        TripID: "2",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "20 chỗ",
+      },
+      {
+        TripID: "3",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "10 chỗ",
+      },
+      {
+        TripID: "2",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "20 chỗ",
+      },
+      {
+        TripID: "3",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "10 chỗ",
+      },
+      {
+        TripID: "2",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "20 chỗ",
+      },
+      {
+        TripID: "3",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "10 chỗ",
+      },
+      {
+        TripID: "2",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "20 chỗ",
+      },
+      {
+        TripID: "3",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "10 chỗ",
+      },
+      {
+        TripID: "2",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "20 chỗ",
+      },
+      {
+        TripID: "3",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "10 chỗ",
+      },
+      {
+        TripID: "2",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "20 chỗ",
+      },
+      {
+        TripID: "3",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "10 chỗ",
+      },
+      {
+        TripID: "2",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "20 chỗ",
+      },
+      {
+        TripID: "3",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "10 chỗ",
+      },
+      {
+        TripID: "2",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "20 chỗ",
+      },
+      {
+        TripID: "3",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "10 chỗ",
+      },
+      {
+        TripID: "2",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "20 chỗ",
+      },
+      {
+        TripID: "3",
+        CarID: "01",
+        Dpt: "BK",
+        DptTime: "27-12-2000 10:00:00",
+        Dst: "NEU",
+        ArrTime: "28-12-2000 10:00:00",
+        Cap: "10 chỗ",
+      },
+      {
         TripID: "2",
         CarID: "01",
         Dpt: "BK",
@@ -115,226 +356,34 @@ function Schedule(params) {
                 <DeleteIcon/>
             </Button>);
     }
-<<<<<<< HEAD
   };
   return (
-    <div>
+    <div className = {myclass.root}>
+            <div className= {myclass.contariner}>
+                <div
+                    className = {myclass.contariner1}
+                >
+      
       <MaterialTable
-        icons={tableIcons}
+        icons={tableIcons} 
         options={{ search: true }}
         title={"Danh sách lịch trình"}
         columns={columns}
         data={data}
         options={{
           selection: true,
+          paging:true,
+          pageSize:10,       // make initial page size
+          emptyRowsWhenPaging: true,   //to make page size fix in case of less data rows
+          pageSizeOptions:[10],   
         }}
         components={components}
       >
     </MaterialTable>
     </div>
+    </div>
+    </div>
   );
-=======
-))
-function Schedule(params) 
-{
-    const myclass = myStyle();
-    const data =    {
-                        columns :    [
-                            {
-                                label: "ID chuyến",
-                                field: "IDc",
-                                sort: "asc",
-                                width: 150,
-                              },
-                              {
-                                label: "ID xe",
-                                field: "IDx",
-                                sort: "asc",
-                                width: 200,
-                              },
-                              {
-                                label: "Điểm đi",
-                                field: "start",
-                                sort: "asc",
-                                width: 200,
-                              },
-                              {
-                                label: "Điểm đến",
-                                field: "arrive",
-                                sort: "asc",
-                                width: 270,
-                              },
-                              {
-                                label: "Giờ đi",
-                                field: "startinghour",
-                                sort: "asc",
-                                width: 200,
-                              },
-                              {
-                                label: "Ngày đi",
-                                field: "startingday",
-                                sort: "asc",
-                                width: 200,
-                              },                              {
-                                label: "Giờ đến",
-                                field: "arrivinghour",
-                                sort: "asc",
-                                width: 200,
-                              },
-                              
-                              {
-                                label: "Ngày đến",
-                                field: "arrivingday",
-                                sort: "asc",
-                                width: 200,
-                              },
-                              
-                              {
-                                label: "Số chỗ/Trọng tải",
-                                field: "capact",
-                                sort: "asc",
-                                width: 200,
-                              },
-                             
-                            ],
-                            rows: [
-                                {
-                                    IDc: "1",
-                                    IDx: "01",
-                                    start: "BK",
-                                    timestart: "27-12-2000 10:00:00",
-                                    arrive: "NEU",
-                                    timearrive : "28-12-2000 10:00:00",
-                                    date: "2011/04/25",
-                                    capact: "10 chỗ",
-                                },
-                                {
-                                    IDc: "1",
-                                    IDx: "01",
-                                    start: "BK",
-                                    timestart: "28-12-2000 10:00:00",
-                                    arrive: "NEU",
-                                    timearrive : "01-01-2000 00:00:00",
-                                    date: "2011/04/25",
-                                    capact: "1000 kg",
-                                },
-                                {
-                                    IDc: "1",
-                                    IDx: "01",
-                                    start: "BK",
-                                    startinghour: "10:00",
-                                    arrive: "NEU",
-                                    arrivinghour : "12:00",
-                                    startingday: "2011/04/25",
-                                    arrivingday: "2011/04/25",
-                                    capact: "10",
-                                },
-                                {
-                                    IDc: "1",
-                                    IDx: "01",
-                                    start: "BK",
-                                    timestart: "10:00",
-                                    arrive: "NEU",
-                                    timearrive : "12:00",
-                                    date: "2011/04/25",
-                                    capact: "10",
-                                },
-                                {
-                                    IDc: "1",
-                                    IDx: "01",
-                                    start: "BK",
-                                    timestart: "10:00",
-                                    arrive: "NEU",
-                                    timearrive : "12:00",
-                                    date: "2011/04/25",
-                                    capact: "10",
-                                },
-                                {
-                                    IDc: "1",
-                                    IDx: "01",
-                                    start: "BK",
-                                    timestart: "10:00",
-                                    arrive: "NEU",
-                                    timearrive : "12:00",
-                                    date: "2011/04/25",
-                                    capact: "10",
-                                },
-                                {
-                                    IDc: "1",
-                                    IDx: "01",
-                                    start: "BK",
-                                    timestart: "10:00",
-                                    arrive: "NEU",
-                                    timearrive : "12:00",
-                                    date: "2011/04/25",
-                                    capact: "10",
-                                },
-                                {
-                                    IDc: "1",
-                                    IDx: "01",
-                                    start: "BK",
-                                    timestart: "10:00",
-                                    arrive: "NEU",
-                                    timearrive : "12:00",
-                                    date: "2011/04/25",
-                                    capact: "10",
-                                },
-                            ],
-                        };
-                        
-    return(
-        <div className = {myclass.root}>
-            <div className= {myclass.contariner}>
-                <div
-                    className = {myclass.contariner1}
-                >
-                    <MDBCard
-                        style = {
-                                    {
-                                        position : "relative",
-                                        width : "100%",
-                                        height : "90vh",
-                                        //top : '-10px',
-                                    }
-                                }
-                    >
-                        <MDBCardBody
-                            style=  {
-                                        {
-                                            position : "relative",
-                                            width : "100%",
-                                            top : "3%",
-                                        }
-                                    }
-                        >
-                              <h3
-                                className = {myclass.header}
-                            >
-                                Danh Sách Lịch Trình
-                            </h3>   
-                            <AddSchedule />
-                            <MDBDataTableV5
-                                 info = {false}
-                                 striped
-                                 hover = {true}
-                                 bordered = {true}
-                                 entriesOptions={[5,6,7]} 
-                                 entries={7}
-                                 data = {data}
-                                 searchBottom = {false}
-                                 searchTop
-                                 barReverse
-                                 checkbox 
-                                 checkboxFirstColumn
-                            />
-                        </MDBCardBody>
-                    </MDBCard>
-                </div>
-            </div>
-        </div>
-    );
-
->>>>>>> c5fbadee405e5c420f9a4f72d027892e1202a360
 }
 
 export default Schedule;
