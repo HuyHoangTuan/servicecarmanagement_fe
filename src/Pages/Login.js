@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { InputAdornment, Grid, Box } from "@material-ui/core";
 import { AccountCircle, LockRounded, PlayCircleFilledWhite } from "@material-ui/icons";
-import truck from "../Image/truck.jpg"
+import truck from "../Image/truck.png"
 
 const useStyles = makeStyles((theme) => ({
     body: {
@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "column",
       //alignItems: "center",
       backgroundImage: `url(${truck})`,
+      backgroundSize : 'cover',
       spacing: 10,
       width : "100vw",
       height : "100vh",
