@@ -1,5 +1,5 @@
 import { Button, makeStyles } from "@material-ui/core";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { forwardRef } from "react";
 import MaterialTable from "material-table";
 import DeleteIcon from "@material-ui/icons/Delete";
@@ -97,41 +97,49 @@ function Schedule(params) {
     else SetStartErasing(true);
   }
   const columns = [
-    { field: "CarID", title: "ID xe" },
-    { field: "Plate", title: "Biển số"},
-    { field: "Driver", title: "Lái xe" },
+    { field: "id", title: "ID xe" },
+    { field: "license", title: "Biển số"},
+    { field: "driver", title: "Lái xe" },
     { field: "brand", title: "Hãng xe" },
-    { field: "Age", title: "Đời xe" },
-    { field: "Type", title: "Loại xe" },
-    { field: "Registerdate", title: "Ngày đăng kiểm" },
-    { field: "State", title: "Trạng thái" },
+    { field: "manufacturedate", title: "Đời xe" },
+    { field: "registerdate", title: "Ngày đăng kiểm" },
+    { field: "cartype", title: "Loại xe" },
+    { field: "state", title: "Trạng thái" },
   ];
 
-  const data = [
-    {
-    
-    },
-  ];
+  const [data,setData] = useState([]);
+  function handleGet() 
+  {
+    axios
+      .get("http://localhost:8080/carlist/get")
+      .then(res => setData(res.data));
+  }
+  useEffect(() => {
+    handleGet();
+  }, []);
   function handleDeletion(Data)
   {
     var DeleteIds = [];
-    Data.forEach(element => { DeleteIds.push(element.TripID) 
+    Data.forEach(element => { DeleteIds.push(element.id) 
     });
+    console.log(DeleteIds);
     axios
-    .post("http://localhost:8080/carlist/delete", DeleteIds)
+    .delete(`http://localhost:8080/carlist/delete/${DeleteIds}`)
     .then((response) => {
-        console.log(response);
+        alert("Delete successful.")
+        window.location.reload();
     })
   }
   const components={
     Actions: props => {
-      return [
-            <AddCarlist key = {0}/>, 
-            <Button key = {1}
+      return (props.data == null) ?
+            (<AddCarlist key = {0}/>)
+            :
+            (<Button key = {1}
                 onClick = {() => handleDeletion(props.data)}
             >
                 <DeleteIcon/>
-            </Button>];
+            </Button>)
     }
   };
   return (

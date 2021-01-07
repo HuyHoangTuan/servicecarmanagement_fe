@@ -112,7 +112,8 @@ function Schedule(params) {
     console.log(DeleteIds);
     axios
     .delete(`http://localhost:8080/schedule/delete/${DeleteIds}`)
-    .then((response) => {alert('deletion successful.')
+    .then((response) => {alert('deletion successful.');
+    window.location.reload();
         
     })
   }
