@@ -22,8 +22,38 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import AddSchedule from "../component/AddSchedule";
 import axios from "axios";
-
+import { TablePagination } from '@material-ui/core';
+const myStyle = makeStyles((theme) =>(
+  {
+      root :  {
+                  display : "flex",
+                  flexDirection : 'column',
+              },
+      contariner :    {
+                          position : "fixed",
+                          top : "0%",
+                          width : "100%",
+                          height : "100vh",
+                          backgroundColor : "#ffca18",
+                      },
+      contariner1 :   {
+                          position : "relative",
+                          width : "90%",
+                          height : "200%",
+                          top : '5%',
+                          left : '5%',
+                      },
+      header :    {
+                      position : 'absolute',
+                      fontSize : '50px',
+                      top : '3px',
+                      left : '450px',
+                    
+      },
+  }
+))
 function Schedule(params) {
+  const myclass = myStyle();
   const tableIcons = {
     Add: (props) => <AddSchedule />,
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -98,19 +128,30 @@ function Schedule(params) {
     }
   };
   return (
-    <div>
+    <div className = {myclass.root}>
+            <div className= {myclass.contariner}>
+                <div
+                    className = {myclass.contariner1}
+                >
+      
       <MaterialTable
-        icons={tableIcons}
+        icons={tableIcons} 
         options={{ search: true }}
         title={"Danh sách lịch trình"}
         columns={columns}
         data={data}
         options={{
           selection: true,
+          paging:true,
+          pageSize:10,       // make initial page size
+          emptyRowsWhenPaging: true,   //to make page size fix in case of less data rows
+          pageSizeOptions:[10],   
         }}
         components={components}
       >
     </MaterialTable>
+    </div>
+    </div>
     </div>
   );
 }
