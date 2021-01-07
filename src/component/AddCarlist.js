@@ -22,8 +22,10 @@ const myStyle = makeStyles((theme) =>(
                 //textAlign : 'top',
                     },
         form :  {
+                    marginTop : theme.spacing(1.2),
                     minHeight : '1%',
-                    marginLeft: "30%",
+                    marginLeft : theme.spacing(2),
+                    Left: "10%",
                     minWidth: '25%',
                     textAlign : 'center',
                 },
@@ -113,7 +115,7 @@ function AddCarlist(props){
             <Dialog  open={open} className = {myclass.grid}>
                 <DialogTitle id="form-dialog-title">Thêm lịch trình</DialogTitle>
                 <DialogContent className = {myclass.dialog}> 
-                    <Grid container spacing={5} >
+                    <Grid container spacing={2} >
                         <Grid item>
                             <TextField
                                 display="inline"
@@ -168,16 +170,22 @@ function AddCarlist(props){
                             >
                             </TextField>
                         </Grid>
-                        <Grid item >
-                            <TextField
-                                InputLabelProps={{ shrink: true }}  
+                        <FormControl className = {myclass.form}>
+                            <InputLabel id = "demo-simple-select-required-label">Loại xe</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-required-label"
+                                id="demo-simple-select-required"
+                                //InputLabelProps={{ shrink: true }}  
                                 variant="outlined"
-                                required
-                                label="Loại xe"
                                 onChange = {handleCartype}
                             >
-                            </TextField> 
-                        </Grid>
+                                <MenuItem>
+
+                                </MenuItem>
+                                <MenuItem value = "Xe khách">Xe khách</MenuItem>
+                                <MenuItem value = "Xe hàng">Xe hàng</MenuItem>
+                            </Select> 
+                        </FormControl>
                         <FormControl className = {myclass.form}>
                             <InputLabel id = "demo-simple-select-required-label">Trạng thái</InputLabel>
                             <Select
