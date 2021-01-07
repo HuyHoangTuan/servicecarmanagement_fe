@@ -18,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
       flexDirection: "column",
       //alignItems: "center",
       backgroundImage: `url(${truck})`,
+      backgroundSize : 'cover',
       spacing: 10,
       width : "100vw",
       height : "100vh",
