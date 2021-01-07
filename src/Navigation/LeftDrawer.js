@@ -9,7 +9,7 @@ import Home from '@material-ui/icons/Home'
 import CommuteTwoToneIcon from '@material-ui/icons/CommuteTwoTone';
 import DateRangeTwoToneIcon from '@material-ui/icons/DateRangeTwoTone';
 import {Link} from 'react-router-dom';
-import { getToken, getUser, removeUserSession } from '../Utils/Common';
+import { getUser, removeUserSession } from '../Utils/Common';
 import { withRouter } from "react-router-dom";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 const drawerWidth = 240;
@@ -96,6 +96,7 @@ function LeftDrawer(props) {
 
     // handle click event of logout button
     function handleLogout() {
+        setOpen(false);
         removeUserSession();
         props.history.push("/login");
     }
