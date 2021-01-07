@@ -61,15 +61,26 @@ function Schedule(params)
                                 width: 270,
                               },
                               {
-                                label: "Thời gian đi",
-                                field: "timestart",
+                                label: "Giờ đi",
+                                field: "startinghour",
+                                sort: "asc",
+                                width: 200,
+                              },
+                              {
+                                label: "Ngày đi",
+                                field: "startingday",
+                                sort: "asc",
+                                width: 200,
+                              },                              {
+                                label: "Giờ đến",
+                                field: "arrivinghour",
                                 sort: "asc",
                                 width: 200,
                               },
                               
                               {
-                                label: "Thời gian đến",
-                                field: "timearrive",
+                                label: "Ngày đến",
+                                field: "arrivingday",
                                 sort: "asc",
                                 width: 200,
                               },
@@ -107,10 +118,11 @@ function Schedule(params)
                                     IDc: "1",
                                     IDx: "01",
                                     start: "BK",
-                                    timestart: "10:00",
+                                    startinghour: "10:00",
                                     arrive: "NEU",
-                                    timearrive : "12:00",
-                                    date: "2011/04/25",
+                                    arrivinghour : "12:00",
+                                    startingday: "2011/04/25",
+                                    arrivingday: "2011/04/25",
                                     capact: "10",
                                 },
                                 {
@@ -196,7 +208,7 @@ function Schedule(params)
                             >
                                 Danh Sách Lịch Trình
                             </h3>   
-                            <AddSchedule className = "addsche"/>
+                            <AddSchedule />
                             <MDBDataTableV5
                                  info = {false}
                                  striped

@@ -66,16 +66,28 @@ function AddSchedule(props){
                     </TextField>
                     <TextField
                     required
-                    label="Thời gian đi"
-                    helperText ="hh/mm dd/mm/yyyy"
+                    label="Giờ đi"
+                    helperText ="hh/mm"
                     >
                     </TextField>
                     <TextField
                     required
-                    label="Thời gian đến"
-                    helperText ="hh/mm dd/mm/yyyy"
+                    label="Ngày đi"
+                    helperText ="dd/mm/yyyy"
                     >
                     </TextField>
+                    <TextField
+                    required
+                    label="Ngày đến"
+                    helperText ="dd/mm/yyyy"
+                    >
+                    </TextField>
+                    <TextField
+                    required
+                    label="Ngày đến"
+                    helperText ="dd/mm/yyyy"
+                    >
+                    </TextField>    
                     <TextField
                     required
                     label="Số chỗ/ Trọng tải"
