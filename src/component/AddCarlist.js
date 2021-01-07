@@ -113,7 +113,7 @@ function AddCarlist(props){
                 <AddIcon/>
             </Button>
             <Dialog  open={open} className = {myclass.grid}>
-                <DialogTitle id="form-dialog-title">Thêm lịch trình</DialogTitle>
+                <DialogTitle id="form-dialog-title">Thêm xe</DialogTitle>
                 <DialogContent className = {myclass.dialog}> 
                     <Grid container spacing={2} >
                         <Grid item>

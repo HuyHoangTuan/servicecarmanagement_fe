@@ -69,7 +69,7 @@ function AddSchedule(props){
         .post("http://localhost:8080/schedule/add", {carid:CarID, departure:Dpt, destination:Dst, startingtime:DptTime, arrivingtime:ArrTime, capacity:Cap})
         .then((response) => {
             console.log(response);
-            if(response.data.status === 0)
+            if(response.data.state === 0)
             {
               alert("Add successful.");
               window.location.reload();
