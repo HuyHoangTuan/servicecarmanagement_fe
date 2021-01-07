@@ -1,11 +1,8 @@
 import { Button, makeStyles } from "@material-ui/core";
-import { MDBCard, MDBCardBody, MDBDataTableV5 } from "mdbreact";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { forwardRef } from "react";
 import MaterialTable from "material-table";
-import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
-import AddBox from "@material-ui/icons/AddBox";
 import ArrowUpward from "@material-ui/icons/ArrowUpward";
 import Check from "@material-ui/icons/Check";
 import ChevronLeft from "@material-ui/icons/ChevronLeft";
@@ -22,7 +19,51 @@ import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
 import AddCarlist from "../component/AddCarlist";
 import axios from "axios";
-function CarList(params) {
+import { CenterFocusStrong } from "@material-ui/icons";
+const myStyle = makeStyles((theme) =>(
+    {
+        root :  {
+                    display : "flex",
+                    flexDirection : 'column',
+                },
+        contariner :    {
+                            position : "fixed",
+                            top : "0%",
+                            width : "100%",
+                            height : "100vh",
+                            backgroundColor : "#585858",
+                        },
+        contariner1 :   {
+                            position : "fixed",
+                            width : "90%",
+                            height : "100vh",
+                            top : '5%',
+                            left : '5%',
+                            
+                        },
+        header :    {
+                        position : 'absolute',
+                        fontSize : '50px',
+                        top : '3px',
+                        left : '530px',
+                        textAlign : 'left',
+                    },
+        addbutton : {
+                        position : 'absolute',
+                        top : '6%',
+                        right : '30%',
+                        borderWidth: theme.spacing(3),
+                        width:  theme.spacing(3),
+                        height: theme.spacing(3),
+                        
+                        borderRadius: theme.spacing(3),
+                        
+                        transform : 'scale(1.5)',
+                    }
+    }
+))
+function Schedule(params) {
+  const myclass = myStyle();
   const tableIcons = {
     Add: (props) => <AddCarlist />,
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -48,25 +89,29 @@ function CarList(params) {
     )),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
   };
+  const [startErasing, SetStartErasing] = useState(true);
+  
+  function ToggleErase() {
+
+    if (startErasing === true) SetStartErasing(false);
+    else SetStartErasing(true);
+  }
   const columns = [
-    { field: "id", title: "ID" },
-    { field: "driver", title: "Lái xe" },
-    { field: "license", title: "Biển số" },
-    { field: "MnDate", title: "Đời xe" },
-    { field: "brand", title: "Hãng xe" },
-    { field: "register", title: "Ngày đăng kiểm" },
-    { field: "state", title: "Đang hoạt động" },
+    { field: "CarID", title: "ID xe" },
+    { field: "Plate", title: "Biển số"},
+    { field: "Driver", title: "Lái xe" },
+    { field: "brand", title: "Hãng xe" },
+    { field: "Age", title: "Đời xe" },
+    { field: "Type", title: "Loại xe" },
+    { field: "Registerdate", title: "Ngày đăng kiểm" },
+    { field: "State", title: "Trạng thái" },
   ];
 
-  const [data,setData] = useState([]);
-  /*function handleGet()
-  {
-    axios.get("http://localhost:8080/carlist/get")
-      .then(response => setData(response.data))
-  }
-  useEffect(() => {
-    handleGet();
-  }, [])*/
+  const data = [
+    {
+    
+    },
+  ];
   function handleDeletion(Data)
   {
     var DeleteIds = [];
@@ -90,21 +135,32 @@ function CarList(params) {
     }
   };
   return (
-    <div>
+    <div className = {myclass.root}>
+            <div className= {myclass.contariner}>
+                <div
+                    className = {myclass.contariner1}
+                >
       <MaterialTable
         icons={tableIcons}
         options={{ search: true }}
         title={"Danh sách xe"}
         columns={columns}
+        textAlign = {CenterFocusStrong}
         data={data}
         options={{
-          selection: true,
-        }}
+            selection: true,
+            paging:true,
+            pageSize:10,       // make initial page size
+            emptyRowsWhenPaging: true,   //to make page size fix in case of less data rows
+            pageSizeOptions:[10],   
+          }}
         components={components}
       >
     </MaterialTable>
     </div>
+    </div>
+    </div>
   );
 }
 
-export default CarList;
+export default Schedule;

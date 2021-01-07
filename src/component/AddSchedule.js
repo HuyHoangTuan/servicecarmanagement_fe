@@ -1,8 +1,11 @@
 import React, {useState} from 'react';
-import { MDBModal, MDBModalBody, MDBModalFooter } from 'mdbreact';
 import AddIcon from '@material-ui/icons/Add';
-import { Button, makeStyles } from '@material-ui/core';
+import { Button, Dialog, makeStyles } from '@material-ui/core';
+import {Grid} from "@material-ui/core";
 import TextField from '@material-ui/core/TextField';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogTitle from '@material-ui/core/DialogTitle';
 import axios from 'axios';
 const myStyle = makeStyles((theme) =>(
     {
@@ -16,6 +19,13 @@ const myStyle = makeStyles((theme) =>(
                         color : '#ffca18',
                         //backgroundColor : 'red'
                     },
+        dialog:{
+            
+        },
+        grid:
+        {
+
+        }
     }
 ))
 function AddSchedule(props){
@@ -28,17 +38,12 @@ function AddSchedule(props){
     const handleCloseAdd = () => {
         setOpen(false)
     }
-    const [TripID, setTripID] = useState();
     const [CarID, setCarID] = useState();
     const [Dpt, setDpt] = useState();
     const [Dst, setDst] = useState();
     const [DptTime, setDptTime] = useState();
     const [ArrTime, setArrTime] = useState();
     const [Cap, setCap] = useState();
-
-    const handleTripIDChange = (event) => {
-        setTripID(event.target.value);
-      };
       const handleCarIDChange = (event) => {
         setCarID(event.target.value);
       };
@@ -61,17 +66,20 @@ function AddSchedule(props){
     {
         //console.log({TripID, CarID, Dpt, Dst, DptTime, ArrTime, Cap});
         axios
-        .post("http://localhost:8080/schedule/add", {TripID:TripID, CarID:CarID, Dpt:Dpt, Dst:Dst, DptTime:DptTime, ArrTime:ArrTime, Cap:Cap})
+        .post("http://localhost:8080/schedule/add", {carid:CarID, departure:Dpt, destination:Dst, startingtime:DptTime, arrivingtime:ArrTime, capacity:Cap})
         .then((response) => {
             console.log(response);
+            if(response.data.status == 0) alert("Add successful.");
+            else alert(response.data.message);
         })
+
         setArrTime(null);
         setCap(null);
         setCarID(null);
         setDpt(null);
         setDptTime(null);
         setDst(null);
-        setTripID(null);
+        setOpen(false);
     }
 
     return (
@@ -81,95 +89,90 @@ function AddSchedule(props){
             > 
                 <AddIcon/>
             </Button>
-            <MDBModal  isOpen={open}     size = 'lg'>
-                <MDBModalBody className = {myclass.modal}>
-                    <h2>Thêm lịch trình</h2>
+            <Dialog  open={open} className = {myclass.grid}>
+            <DialogTitle id="form-dialog-title">Thêm lịch trình</DialogTitle>
+            <DialogContent className = {myclass.dialog}> 
+                <Grid container spacing={5} >
+                    <Grid item>
                     <TextField
-                        required
-                        label="ID chuyến"
-                        helperText ="Number"
-                        onChange = {handleTripIDChange}
-                        >
-                    </TextField>
-                    <TextField
+                    display="inline"
+                    InputLabelProps={{ shrink: true }}  
+                    variant="outlined"
                     required
                     label="ID xe"
-                    helperText ="Number"
                     onChange = {handleCarIDChange}
                     >
                     </TextField>
+                    </Grid>
+                    <Grid item >
                     <TextField
+                    display="inline"
+                    InputLabelProps={{ shrink: true }} 
+                    required
+                    variant="outlined"
+                    label="Số chỗ/ Trọng tải"
+                    onChange = {handleCapChange}
+                    >
+                   </TextField>
+                   </Grid>
+                    <Grid item >
+                    <TextField
+                    InputLabelProps={{ shrink: true }}  
+                    variant="outlined"
                     required
                     label="Điểm đi "
-                    helperText ="Text"
                     onChange = {handleDptChange}
                     >
                     </TextField>
+                    </Grid>
+                    <Grid item >
                     <TextField
+                    InputLabelProps={{ shrink: true }}  
+                    variant="outlined"
+                    required
+                    label="Thời gian đi"
+                    type="datetime-local"
+                    onChange = {handleDptTimeChange}
+                    >
+                    </TextField>
+                    </Grid>
+                    <Grid item >
+                    <TextField
+                    InputLabelProps={{ shrink: true }}  
+                    FormHelperTextProps = {{shrink: false}}
+                    variant="outlined"
                     required
                     label="Điểm đến"
-                    helperText ="Text"
                     onChange = {handleDstChange}
                     >
                     </TextField>
+                    </Grid>
+
+                    
+                    
+                    <Grid item >
                     <TextField
+                    InputLabelProps={{ shrink: true }}  
+                    variant="outlined"
                     required
-<<<<<<< HEAD
-                    //label="Thời gian đi"
-                    type = "date"
-                    onChange = {handleDptTimeChange}
-=======
-                    label="Giờ đi"
-                    helperText ="hh/mm"
->>>>>>> c5fbadee405e5c420f9a4f72d027892e1202a360
-                    >
-                    </TextField>
-                    <TextField
-                    required
-<<<<<<< HEAD
-                    //label="Thời gian đến"
-                    type = "date"
+                    label="Thời gian đến"
+                    type="datetime-local"
                     onChange = {handleArrTimeChange}
-=======
-                    label="Ngày đi"
-                    helperText ="dd/mm/yyyy"
->>>>>>> c5fbadee405e5c420f9a4f72d027892e1202a360
                     >
-                    </TextField>
-                    <TextField
-                    required
-                    label="Ngày đến"
-                    helperText ="dd/mm/yyyy"
-                    >
-                    </TextField>
-                    <TextField
-                    required
-                    label="Ngày đến"
-                    helperText ="dd/mm/yyyy"
-                    >
-                    </TextField>    
-                    <TextField
-                    required
-                    label="Số chỗ/ Trọng tải"
-                    helperText ="Người/Kg"
-                    onChange = {handleCapChange}
-                    >
-                    </TextField>
-                </MDBModalBody>
-                <MDBModalFooter>
-                    <Button 
-                        color="secondary" 
-                        onClick = {handleCloseAdd}
-                    >
-                        Close
-                    </Button>
-                    <Button 
-                        color="primary"
-                        onClick = {handleSubmit}
-                        >
-                            Save changes</Button>
-                </MDBModalFooter>
-            </MDBModal>
+                    </TextField> 
+                    </Grid>
+                    
+                    </Grid>
+                   </DialogContent>   
+                   <DialogActions>
+          <Button onClick={handleCloseAdd} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit} color="primary">
+            Submit
+          </Button>
+        </DialogActions>
+            </Dialog>
         </div>
     );
 }
