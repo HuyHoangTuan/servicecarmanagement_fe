@@ -1,6 +1,6 @@
 import { Button, makeStyles } from "@material-ui/core";
 import { MDBCard, MDBCardBody, MDBDataTableV5 } from "mdbreact";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { forwardRef } from "react";
 import MaterialTable from "material-table";
 import AddIcon from "@material-ui/icons/Add";
@@ -20,13 +20,11 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
-import AddSchedule from "../component/AddSchedule";
+import AddCarlist from "../component/AddCarlist";
 import axios from "axios";
-
-<<<<<<< HEAD
-function Schedule(params) {
+function CarList(params) {
   const tableIcons = {
-    Add: (props) => <AddSchedule />,
+    Add: (props) => <AddCarlist />,
     Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
     Clear: forwardRef((props, ref) => <Clear {...props} ref={ref} />),
     Delete: forwardRef((props, ref) => <DeleteOutline {...props} ref={ref} />),
@@ -50,70 +48,45 @@ function Schedule(params) {
     )),
     ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />),
   };
-  const [startErasing, SetStartErasing] = useState(true);
-  function ToggleErase() {
-    if (startErasing === true) SetStartErasing(false);
-    else SetStartErasing(true);
-  }
   const columns = [
-    { field: "CarID", title: "ID chuyến" },
-    { field: "", title: "ID xe" },
-    { field: "Dpt", title: "Điểm đi" },
-    { field: "Dst", title: "Điểm đến" },
-    { field: "DptTime", title: "Thời điểm đi" },
-    { field: "ArrTime", title: "Thòi điểm đến" },
-    { field: "Cap", title: "Số chỗ/ Trọng tải" },
+    { field: "id", title: "ID" },
+    { field: "driver", title: "Lái xe" },
+    { field: "license", title: "Biển số" },
+    { field: "MnDate", title: "Đời xe" },
+    { field: "brand", title: "Hãng xe" },
+    { field: "register", title: "Ngày đăng kiểm" },
+    { field: "state", title: "Đang hoạt động" },
   ];
 
-  const data = [
-    {
-      TripID: "1",
-      CarID: "01",
-      Dpt: "BK",
-      DptTime: "27-12-2000 10:00:00",
-      Dst: "NEU",
-      ArrTime: "28-12-2000 10:00:00",
-      Cap: "10 chỗ",
-    },
-    {
-        TripID: "2",
-        CarID: "01",
-        Dpt: "BK",
-        DptTime: "27-12-2000 10:00:00",
-        Dst: "NEU",
-        ArrTime: "28-12-2000 10:00:00",
-        Cap: "20 chỗ",
-      },
-      {
-        TripID: "3",
-        CarID: "01",
-        Dpt: "BK",
-        DptTime: "27-12-2000 10:00:00",
-        Dst: "NEU",
-        ArrTime: "28-12-2000 10:00:00",
-        Cap: "10 chỗ",
-      },
-  ];
+  const [data,setData] = useState([]);
+  /*function handleGet()
+  {
+    axios.get("http://localhost:8080/carlist/get")
+      .then(response => setData(response.data))
+  }
+  useEffect(() => {
+    handleGet();
+  }, [])*/
   function handleDeletion(Data)
   {
     var DeleteIds = [];
     Data.forEach(element => { DeleteIds.push(element.TripID) 
     });
     axios
-    .post("http://localhost:8080/schedule/delete", DeleteIds)
+    .post("http://localhost:8080/carlist/delete", DeleteIds)
     .then((response) => {
         console.log(response);
     })
   }
   const components={
     Actions: props => {
-      return (props.data == null) ? (
-            <AddSchedule key = {0}/> ) : ( 
+      return [
+            <AddCarlist key = {0}/>, 
             <Button key = {1}
                 onClick = {() => handleDeletion(props.data)}
             >
                 <DeleteIcon/>
-            </Button>);
+            </Button>];
     }
   };
   return (
@@ -132,247 +105,6 @@ function Schedule(params) {
     </MaterialTable>
     </div>
   );
-=======
-import {Button, IconButton, makeStyles } from '@material-ui/core';
-import { MDBCard, MDBCardBody , MDBCardHeader, MDBDataTableV5,  } from 'mdbreact';
-import React from 'react';
-import AddCarlist from '../component/AddCarlist';
-const myStyle = makeStyles((theme) =>(
-    {
-        root :  {
-                    display : "flex",
-                    flexDirection : 'column',
-                },
-        contariner :    {
-                            position : "fixed",
-                            top : "0%",
-                            width : "100%",
-                            height : "100vh",
-                            backgroundColor : "#585858",
-                        },
-        contariner1 :   {
-                            position : "fixed",
-                            width : "90%",
-                            height : "100vh",
-                            top : '5%',
-                            left : '5%',
-                            
-                        },
-        header :    {
-                        position : 'absolute',
-                        fontSize : '50px',
-                        top : '3px',
-                        left : '530px',
-                        textAlign : 'left',
-                    },
-        addbutton : {
-                        position : 'absolute',
-                        top : '6%',
-                        right : '30%',
-                        borderWidth: theme.spacing(3),
-                        width:  theme.spacing(3),
-                        height: theme.spacing(3),
-                        
-                        borderRadius: theme.spacing(3),
-                        
-                        transform : 'scale(1.5)',
-                    }
-    }
-))
-function CarList(params) 
-{
-    const myclass = myStyle();
-    const data =    {
-                        columns :    [
-                                        {
-                                            label : "Id",
-                                            field : "Id",
-                                            //sort : 'asc',
-                                            width : 10,
-                                        },
-                                        {
-                                            label : "Lái Xe",
-                                            field : "Name",
-                                            //sort : 'asc',
-                                            width : 300,
-                                        },
-                                        {
-                                            label : "Biển số",
-                                            field : "Code",
-                                            //sort : 'asc',
-                                            width : 100,
-                                        },
-                                        {
-                                            label : "Hãng Xe",
-                                            field : "Brand",
-                                            //sort : 'asc',
-                                            width : 100,
-                                        },
-                                        {
-                                            label : "Đời Xe",
-                                            field : "Age",
-                                            //sort : 'asc',
-                                            width : 100,
-                                        },
-                                        {
-                                            label : "Loại xe",
-                                            field : "Type",
-                                            //sort : "asc",
-                                            width : 100,
-                                        },
-                                        {
-                                            label : "Ngày Đăng Kiểm",
-                                            field : "CheckedDate",
-                                            //sort : 'asc',
-                                            width : 100,
-                                        },
-                                        {
-                                            label : "Đang Hoạt Động",
-                                            field : "Act",
-                                            //sort : 'asc',
-                                            width : 100,
-                                        },
-                                    ],
-                        rows :   [
-                                    {
-                                        Id : "1",
-                                        Name : "Huydz",
-                                        Code : "14 X1-30607",
-                                        Brand : "Huyndai",
-                                        Age : "2019",
-                                        CheckedDate : "27/12/2000",
-                                        Type : "Xe chở hàng",
-                                        Act : "Active",
-                                    },
-                                    {
-                                        Id : "2",
-                                        Name : "Ducnl",
-                                        Code : "14 X1-123456",
-                                        Brand : "Huyndai",
-                                        Age : "2019",
-                                        CheckedDate : "27/12/2000",
-                                        Type : "Xe chở khách",
-                                        Act : "Active",
-                                    },{
-                                        Id : "1",
-                                        Name : "Huydz",
-                                        Code : "14 X1-30607",
-                                        Brand : "Huyndai",
-                                        Age : "2019",
-                                        CheckedDate : "27/12/2000",
-                                        Act : "Active",
-                                    },
-                                    {
-                                        Id : "1",
-                                        Name : "Huydz",
-                                        Code : "14 X1-30607",
-                                        Brand : "Huyndai",
-                                        Age : "2019",
-                                        CheckedDate : "27/12/2000",
-                                        Act : "Active",
-                                    },
-                                    {
-                                        Id : "1",
-                                        Name : "Huydz",
-                                        Code : "14 X1-30607",
-                                        Brand : "Huyndai",
-                                        Age : "2019",
-                                        CheckedDate : "27/12/2000",
-                                        Act : "Active",
-                                    },
-                                    {
-                                        Id : "1",
-                                        Name : "Huydz",
-                                        Code : "14 X1-30607",
-                                        Brand : "Huyndai",
-                                        Age : "2019",
-                                        CheckedDate : "27/12/2000",
-                                        Act : "Active",
-                                    },
-                                    {
-                                        Id : "1",
-                                        Name : "Huydz",
-                                        Code : "14 X1-30607",
-                                        Brand : "Huyndai",
-                                        Age : "2019",
-                                        CheckedDate : "27/12/2000",
-                                        Act : "Active",
-                                    },
-                                    {
-                                        Id : "1",
-                                        Name : "Huydz",
-                                        Code : "14 X1-30607",
-                                        Brand : "Huyndai",
-                                        Age : "2019",
-                                        CheckedDate : "27/12/2000",
-                                        Act : "Active",
-                                    },
-                                    {
-                                        Id : "1",
-                                        Name : "Huydz",
-                                        Code : "14 X1-30607",
-                                        Brand : "Huyndai",
-                                        Age : "2019",
-                                        CheckedDate : "27/12/2000",
-                                        Act : "Active",
-                                    },
-                                    
-                                ],
-
-                    };
-    return(
-        <div className = {myclass.root}>
-            <div className= {myclass.contariner}>
-                <div
-                    className = {myclass.contariner1}
-                >
-                    <MDBCard
-                        style = {
-                                    {
-                                        position : "relative",
-                                        width : "100%",
-                                        height : "90vh",
-                                    }
-                                }
-                    >
-                        <MDBCardBody
-                            style=  {
-                                        {
-                                            position : "relative",
-                                            width : "100%",
-                                            top : "3%",
-                                        }
-                                    }
-                        >
-                            <h3
-                                className = {myclass.header}
-                            >
-                                Danh Sách Xe
-                            </h3>   
-                            <AddCarlist/> 
-                            <MDBDataTableV5
-                                info = {false}
-                                striped
-                                hover = {true}
-                                bordered = {true}
-                                entriesOptions={[5,6,7]} 
-                                entries={7}
-                                data = {data}
-                                searchBottom = {false}
-                                searchTop
-                                barReverse
-                                checkbox 
-                                checkboxFirstColumn
-                            >
-                            </MDBDataTableV5>  
-                        </MDBCardBody>
-                    </MDBCard>
-                </div>
-            </div>
-        </div>
-    );
-
->>>>>>> c5fbadee405e5c420f9a4f72d027892e1202a360
 }
 
 export default CarList;
